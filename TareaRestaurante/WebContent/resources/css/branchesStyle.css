@@ -44,3 +44,8 @@ table td {
 div.row[class^="col"]{
 		padding-top: 200px;
 }
+
+.create-new-branch {
+	position: fixed;
+	margin-top: 100px;
+}

@@ -58,7 +58,7 @@
 				<td><c:out value = "${branch.getAddress()}"/></td>
 				<td><c:out value = "${branch.getOpeningWeekTime()}"/></td>
 				<td><c:out value = "${branch.getClosingWeekTime()}"/></td>
-				<td><c:out value = "${branch.getClosingWeekendTime()}"/></td>
+				<td><c:out value = "${branch.getOpeningWeekendTime()}"/></td>
 				<td><c:out value = "${branch.getClosingWeekendTime()}"/></td>
 				<td><c:out value = "${branch.getNumberOfTables()}"/></td>
 				<td><c:out value = "${branch.getManagerName()}"/></td>			
@@ -67,7 +67,9 @@
 		</c:forEach>	
 		</table>
        </div>
-       <div class="col-md-1"></div>
+       <div class="col-md-1">
+       		<button class="btn btn-success create-new-branch" onclick="location.href='${pageContext.request.contextPath}/create-new-branch'">Crear nuevo</button>
+       </div>
 	</div>
 </body>
 </html>

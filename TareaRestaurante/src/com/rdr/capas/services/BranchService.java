@@ -41,4 +41,10 @@ public class BranchService implements BranchInterface{
 		bRepository.deleteById(id);
 	}
 
+	@Override
+	public void create(Branch branch) {
+		// TODO Auto-generated method stub
+		bRepository.save(branch);
+	}
+
 }

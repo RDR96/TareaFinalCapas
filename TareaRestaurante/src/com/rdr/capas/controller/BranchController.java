@@ -43,32 +43,52 @@ public class BranchController {
 		return mav;
 	}	
 	
-	@RequestMapping("/edit")
-	public ModelAndView editBranch(@RequestParam String id) {		
-		ModelAndView mav = new ModelAndView();	
-		System.out.println("El nombre es: " + id);
-		Branch branch = branchService.getOne(Integer.parseInt(id));
-		System.out.println("El nombre es: " + branch.getName());
+	@RequestMapping("/create-new-branch")
+	public ModelAndView createNewBranches() {		
+		ModelAndView mav = new ModelAndView();
+			
+		Branch branch = new Branch();
 		
 		mav.addObject("branch", branch);
+		
+		mav.setViewName("newBranch");	
+		return mav;
+	}	
+	
+	@RequestMapping("/create-branch")
+	public String createBranch(@ModelAttribute Branch branch) {
+		
+		ModelAndView mav = new ModelAndView();
+			
+		branchService.create(branch);
+		
+		return "redirect:/branches";
+	}	
+	
+	
+	
+	
+	@RequestMapping("/edit")
+	public ModelAndView editBranch(@RequestParam String id) {		
+		ModelAndView mav = new ModelAndView();			
+		Branch branch = branchService.getOne(Integer.parseInt(id));		
+		mav.addObject("branch", branch);
 		mav.setViewName("editBranch");
+		
 		return mav;
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteBranch(@RequestParam String id) {		
-		ModelAndView mav = new ModelAndView();			
+	public String deleteBranch(@RequestParam String id) {				
 		branchService.deleteById(Integer.parseInt(id));
 				
-		return "redirect:/";
+		return "redirect:/branches";
 	}
 	
 	@RequestMapping("/edit-branch")
 	public String edit(@ModelAttribute Branch branch, RedirectAttributes redirectAttributes ) {		
 		ModelAndView mav = new ModelAndView();	
-		
-		System.out.println(branch.getOpeningWeekendTime() );
-		
+						
 		branchService.update(branch);
 		Branch branchUpdated = branchService.getOne(branch.getId());		
 		
