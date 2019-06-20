@@ -129,6 +129,7 @@
 			</c:forEach>	
 			</table>
 		</div>
+		<button class="btn btn-success create-new-employee" onclick="location.href='${pageContext.request.contextPath}/create-new-employee?branch_id=${branch.getId()}'">Contratar empleado</button>
        </div>
 	</div>
 </body>

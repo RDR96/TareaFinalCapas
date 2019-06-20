@@ -65,9 +65,6 @@ public class BranchController {
 		return "redirect:/branches";
 	}	
 	
-	
-	
-	
 	@RequestMapping("/edit")
 	public ModelAndView editBranch(@RequestParam String id) {		
 		ModelAndView mav = new ModelAndView();			

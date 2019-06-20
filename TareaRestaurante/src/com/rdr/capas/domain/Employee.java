@@ -21,6 +21,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(schema="public", name="employee")
 public class Employee {
@@ -32,9 +34,10 @@ public class Employee {
 
 	private String name; 
 
-	@Basic
-	@Temporal(TemporalType.DATE)
-	private Date birth;
+	
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birth;
 	
 	private String genre;
 	
@@ -43,6 +46,7 @@ public class Employee {
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "branch_id", nullable= false)
 	private Branch branch;
+		
 	
 	//@Column(name = "branch_id")
 	//private Integer branchId;
@@ -112,13 +116,7 @@ public class Employee {
 		}
 	}
 
-	/*public Integer getBranchId() {
-		return branchId;
-	}
 	
-	public void setBranchId(Integer branchId) {
-		this.branchId = branchId;
-	}*/
 	
 	public Branch getBranch() {
 		return branch;
@@ -139,6 +137,16 @@ public class Employee {
 	    long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
 	    return diff;
 	
+	}
+	
+	
+	public int getBranchMasterId () {
+		
+		return this.branch.getId();	
+	}
+	
+	public void setBranchMasterId (int id) {
+		this.branch.setId(id);
 	}
 	
 }
