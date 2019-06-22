@@ -20,6 +20,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,11 +38,12 @@ public class Employee {
 	@NotEmpty(message = "No puede estar vacio")
 	private String name; 
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date birth;
+	@Min(18)
+	@Max(65)
+    private int age;
 	
 	private String genre;
-	
+
 	private boolean status;
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -50,16 +53,6 @@ public class Employee {
 	public Employee() {
 		
 	}
-	
-	
-	public Date getBirth() {
-		
-		return birth;
-	}
-	
-	/*public Branch getBranch() {
-		return branch;
-	}*/
 	
 	public String getGenre() {
 		return genre;
@@ -76,14 +69,6 @@ public class Employee {
 	public boolean isStatus() {
 		return status;
 	}
-	
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
-	
-	/*public void setBranch(Branch branch) {
-		this.branch = branch;
-	}*/
 	
 	public void setId(Integer id) {
 		this.id = id;
@@ -106,8 +91,6 @@ public class Employee {
 			return "No disponible";
 		}
 	}
-
-	
 	
 	public Branch getBranch() {
 		return branch;
@@ -121,16 +104,6 @@ public class Employee {
 		this.genre = genre;
 	}
 	
-	public long getAge() {		
-	    
-	 
-	    long diffInMillies = Math.abs(new Date().getTime() - birth.getTime() );
-	    long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-	    return diff;
-	
-	}
-	
-	
 	public int getBranchMasterId () {
 		
 		return this.branch.getId();	
@@ -138,6 +111,14 @@ public class Employee {
 	
 	public void setBranchMasterId (int id) {
 		this.branch.setId(id);
+	}
+	
+	public int getAge() {
+		return age;
+	}
+	
+	public void setAge(int age) {
+		this.age = age;
 	}
 	
 }

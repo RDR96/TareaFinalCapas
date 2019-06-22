@@ -54,30 +54,10 @@
 				 	<form:errors path="address" cssStyle="color: #E81505"/>					 						 	
 				 </div>
 				 <div class="form-group">
-				 	<label for="openingWeekendLabel">Apertura / Fin de semana</label>				 	
-				 	<input id="opening-weekend-time"  type="time" class="form-control time-element" />				 	
-				 	<form:hidden id="opening-weekend-time-hidden" path="openingWeekendTime"/>	
-				 	<form:errors path="openingWeekendTime" cssStyle="color: #E81505"/>				 						 	
-				 </div>
-				 <div class="form-group">
-				 	<label for="closingWeekendLabel">Cierre / Fin de semana</label>
-				 	<input id="closing-weekend-time" type="time" class="form-control time-element" />				 	
-				 	<form:hidden id="closing-weekend-time-hidden" path="closingWeekendTime"/>	
-				 	<form:errors path="closingWeekendTime" cssStyle="color: #E81505"/>						 					 						 
-				 </div>
-				 <div class="form-group">
-				 	<label for="openingWeekLabel">Apertura / Semana</label>
-				 	<input id="opening-week-time"  type="time" class="form-control time-element" />				 	
-				 	<form:hidden id="opening-week-time-hidden" path="openingWeekTime"/>	
-				 	<form:errors path="openingWeekTime" cssStyle="color: #E81505"/>					 					 
-				 </div>
-				 <div class="form-group">
-				 	<label for="closingWeekLabel">Cierre / Semana</label>
-				 	<input id="closing-week-time"  type="time" class="form-control time-element" />				 	
-				 	<form:hidden id="closing-week-time-hidden" path="closingWeekTime"/>	
-				 	<form:errors path="closingWeekTime" cssStyle="color: #E81505"/>	
-				 					 					 						 
-				 </div>
+				 	<label for="schedulesInput">Horarios</label>				 	
+				 	<form:input type="text" class="form-control"  path="schedules" name="schedulesInput" />
+				 	<form:errors path="schedules" cssStyle="color: #E81505"/>				 						 	
+				 </div>				 
 				 <div class="row">
 				 	
 				 	<div class="col-md-6 form-container">			 		

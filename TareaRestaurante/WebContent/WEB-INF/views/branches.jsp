@@ -45,12 +45,9 @@
        			<tr>
        				<th>Nombre</th>
        				<th>Dirección</th>
-       				<th width="145">Apertura/semana</th>
-       				<th width="140">Cierre/semana</th>
-       				<th width="120">Apertura/fin de semana</th>
-       				<th width="120">Cierre/fin de semana</th>
-       				<th width="80">N° Mesas</th>
-       				<th>Gerente</th>
+       				<th >Horarios</th>       				
+       				<th style="width: 100px;">N° Mesas</th>
+       				<th style="width: 230px;">Gerente</th>
        				<th style="width: 55px;"></th>
        			</tr>
        		</thead>
@@ -59,10 +56,7 @@
 			<tr>
 				<td><c:out value = "${branch.getName()}"/></td>
 				<td><c:out value = "${branch.getAddress()}"/></td>
-				<td><c:out value = "${branch.getOpeningWeekTime()}"/></td>
-				<td><c:out value = "${branch.getClosingWeekTime()}"/></td>
-				<td><c:out value = "${branch.getOpeningWeekendTime()}"/></td>
-				<td><c:out value = "${branch.getClosingWeekendTime()}"/></td>
+				<td><c:out value = "${branch.getSchedules()}"/></td>
 				<td><c:out value = "${branch.getNumberOfTables()}"/></td>
 				<td><c:out value = "${branch.getManagerName()}"/></td>			
 				<td class="last-column"><Button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/edit?id=${branch.getId()}'"><i class="fas fa-edit"></i></Button> </td>

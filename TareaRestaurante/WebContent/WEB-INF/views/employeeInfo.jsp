@@ -50,10 +50,9 @@
 				 	<input type="hidden" name="branchId" value="${branchId}"/>					 							 	
 				 </div>
 			      <div class="form-group">
-				 	<label for="articleNameInput">Fecha de Nacimiento</label>
-				 	<input id="employee-birth" type="date" value="2017-06-01">				 					 	
-				 	<form:hidden id="birth-hidden" path="birth"/>	
-				 	<form:errors path="birth" cssStyle="color: #E81505"/>	
+				 	<label for="articleNameInput">Edad</label>
+				 	<form:input type="text" class="form-control"  path="age" name="usernameInput" />
+				 	<form:errors path="age" cssStyle="color: #E81505"/>		
 				 </div>
 				 <div class="form-group">
 				 	<label for="openingWeekendLabel">Género</label>				 	
@@ -89,11 +88,9 @@
 				         </c:when>
 				         
 				         <c:when test = "${employee.getId() == null}">
-				            <button class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/${pageToRedirect} '" type="reset"><i class="far fa-trash-alt submitIcon"></i> ${mensajeBoton} </button>
+				            <button class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/${pageToRedirect}?id=${branchId}'" type="reset"><i class="far fa-trash-alt submitIcon"></i> ${mensajeBoton} </button>
 				         </c:when>
-				    
-				      </c:choose>
-				 				 						 								 					 						 	
+				      </c:choose>					 								 					 						 	
 				 	</div>
 				 </div>					 					
 			</form:form>

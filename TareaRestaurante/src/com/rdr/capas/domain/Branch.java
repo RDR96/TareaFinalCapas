@@ -34,31 +34,14 @@ public class Branch {
 	@SequenceGenerator(name = "branch_id_seq", sequenceName = "public.branch_id_seq", allocationSize=1)
 	private Integer id;
 	
-	@NotEmpty(message="No puede estar vacio")
+	@NotEmpty(message="No puede estar vacío")
 	private String name;
 	
-	@NotEmpty(message="No puede estar vacio")
+	@NotEmpty(message="No puede estar vacío")
 	private String address;
 	
-	@Basic
-	@Column(name = "opening_weekend_time")
-	@NotNull(message="No puede estar vacio")
-	private Time openingWeekendTime;
-	
-	@Basic
-	@Column(name = "closing_weekend_time")	
-	@NotNull(message="No puede estar vacio")
-	private Time closingWeekendTime;
-	
-	@Basic
-	@Column(name = "opening_week_time")
-	@NotNull(message="No puede estar vacio")
-	private Time openingWeekTime;
-	
-	@Basic
-	@Column(name = "closing_week_time")
-	@NotNull(message="No puede estar vacio")
-	private Time closingWeekTime;
+	@NotEmpty(message = "No puede estar vacío")
+	private String schedules;
 	
 	@Column(name = "number_of_tables")
 	@Min(1)
@@ -76,22 +59,6 @@ public class Branch {
 
 	public String getAddress() {
 		return address;
-	}
-	
-	public Time getClosingWeekendTime() {
-		return closingWeekendTime;
-	}
-	
-	public Time getClosingWeekTime() {
-		return closingWeekTime;
-	}
-	
-	public Time getOpeningWeekendTime() {
-		return openingWeekendTime;
-	}
-	
-	public Time getOpeningWeekTime() {
-		return openingWeekTime;
 	}
 	
 	
@@ -115,14 +82,6 @@ public class Branch {
 		this.address = address;
 	}
 	
-	public void setClosingWeekendTime(Time closingWeekendTime) {
-		this.closingWeekendTime = closingWeekendTime;
-	}
-	
-	public void setClosingWeekTime(Time closingWeekTime) {
-		this.closingWeekTime = closingWeekTime;
-	}
-	
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -131,13 +90,6 @@ public class Branch {
 		this.name = name;
 	}
 	
-	public void setOpeningWeekendTime(Time openingWeekendTime) {
-		this.openingWeekendTime = openingWeekendTime;
-	}
-	
-	public void setOpeningWeekTime(Time openingWeekTime) {	
-		this.openingWeekTime = openingWeekTime;
-	}
 	
 	public void setManagerName(String managerName) {
 		this.managerName = managerName;
@@ -159,6 +111,14 @@ public class Branch {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return super.toString();
+	}
+	
+	public String getSchedules() {
+		return schedules;
+	}
+	
+	public void setSchedules(String schedules) {
+		this.schedules = schedules;
 	}
 	
 }

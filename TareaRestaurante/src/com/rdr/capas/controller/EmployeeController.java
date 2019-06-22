@@ -56,7 +56,7 @@ public class EmployeeController {
 	}	
 	
 	@RequestMapping("/create-employee")
-	public String createEmployee(@ModelAttribute Employee employee, @RequestParam String branchId, BindingResult result, RedirectAttributes redirectAttributes) {
+	public String createEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, @RequestParam String branchId, RedirectAttributes redirectAttributes) {
 		String redirect = "redirect:/";
 		
 		if (result.hasErrors()) {
