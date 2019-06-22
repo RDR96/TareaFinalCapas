@@ -107,7 +107,7 @@
 					<td><c:out value = "${employee.getAge()}"/></td>	
 					<td><c:out value = "${employee.getGenre()}"/></td>	
 					<td><c:out value = "${employee.getDelegateStatus()}"/></td>				
-					<td class="last-column"><Button style="margin-right: 8px;" onclick="location.href='${pageContext.request.contextPath}/edit-new-employee?employee_id=${employee.getId()}&branch_id=${branch.getId()}'"><i class="fas fa-edit"></i></Button> </td>
+					<td class="last-column"><Button class="btn btn-primary" style="margin-right: 8px;" onclick="location.href='${pageContext.request.contextPath}/edit-new-employee?employee_id=${employee.getId()}&branch_id=${branch.getId()}'"><i class="fas fa-edit"></i></Button> </td>
 				</tr>
 			</c:forEach>	
 			</table>

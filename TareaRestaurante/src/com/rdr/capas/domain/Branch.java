@@ -51,7 +51,7 @@ public class Branch {
 	@NotEmpty(message="No puede estar vacio")
 	private String managerName;
 		
-	@OneToMany(mappedBy= "branch", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy= "branch", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Employee> employees;
 	
 	public Branch() {		
