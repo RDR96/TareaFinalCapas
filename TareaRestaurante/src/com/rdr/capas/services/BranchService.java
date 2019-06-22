@@ -23,7 +23,6 @@ public class BranchService implements BranchInterface{
 	}
 
 	@Override
-	@Transactional
 	public Branch getOne(Integer id) {
 		// TODO Auto-generated method stub
 		return bRepository.getOne(id);

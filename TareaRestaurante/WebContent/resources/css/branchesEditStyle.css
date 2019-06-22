@@ -113,3 +113,13 @@ div.row[class^="col"]{
 	width: 40%;
 }
 
+
+
+.header-message  {
+	font-size: 35px;
+	color: white;
+	display: flex;    
+    color: white;
+    align-items: center;
+}
+

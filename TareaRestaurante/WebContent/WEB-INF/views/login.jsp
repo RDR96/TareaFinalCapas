@@ -26,7 +26,9 @@
 <body>
 	<div class="row h-100">
         <div class="col-sm-12 col-md-6 leftSection">
+        	<h1 class="rusticoNameLabel">Rustico</h1>
         	<i class="fas fa-leaf rusticoLogo"></i>
+        	<br>
 			<h1 id="rustico-label" class="rusticoLabel">Tu lugar preferido para comer </h1>
         </div>
 

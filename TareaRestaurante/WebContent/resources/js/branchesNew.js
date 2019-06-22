@@ -10,4 +10,8 @@ $( document ).ready(function() {
 	$( ".time-element" ).on('change', function() {
 		$(this).next().val($(this).val() + ':00'); 
 	});
+	
+	$('input').on('change', function(){
+		
+	});
 });

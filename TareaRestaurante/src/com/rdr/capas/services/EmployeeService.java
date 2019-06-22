@@ -23,7 +23,7 @@ public class EmployeeService implements EmployeeInterface {
 	@Override
 	public Employee getOne(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return eRepository.getOne(id);
 	}
 
 	@Override
@@ -41,6 +41,7 @@ public class EmployeeService implements EmployeeInterface {
 	@Override
 	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
+		eRepository.deleteById(id);
 		
 	}
 

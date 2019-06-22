@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -44,31 +45,39 @@ public class BranchController {
 	}	
 	
 	@RequestMapping("/create-new-branch")
-	public ModelAndView createNewBranches() {		
+	public ModelAndView createNewBranches(Model model) {		
 		ModelAndView mav = new ModelAndView();
-			
-		Branch branch = new Branch();
 		
-		mav.addObject("branch", branch);
+		if (!model.containsAttribute("branch")) {
+			mav.addObject("branch", new Branch());
+		}
 		
 		mav.setViewName("newBranch");	
 		return mav;
 	}	
 	
 	@RequestMapping("/create-branch")
-	public String createBranch(@ModelAttribute Branch branch) {
+	public String createBranch(@Valid @ModelAttribute Branch branch, BindingResult result, RedirectAttributes redirectAttributes) {
+		String redirect = "redirect:/"; 
 		
-		ModelAndView mav = new ModelAndView();
-			
-		branchService.create(branch);
+		if(result.hasErrors()) {
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.branch", result);
+            redirectAttributes.addFlashAttribute("branch", branch);
+			redirect += "create-new-branch";
+		}
+		else {
+			branchService.create(branch);
+			redirect += "branches"; 
+		}
 		
-		return "redirect:/branches";
+		return redirect;
 	}	
 	
 	@RequestMapping("/edit")
 	public ModelAndView editBranch(@RequestParam String id) {		
-		ModelAndView mav = new ModelAndView();			
-		Branch branch = branchService.getOne(Integer.parseInt(id));		
+		ModelAndView mav = new ModelAndView();					
+		Branch branch = branchService.getOne(Integer.parseInt(id));
+		mav.addObject("headerMessage", "Editar Sucursal #" + id);
 		mav.addObject("branch", branch);
 		mav.setViewName("editBranch");
 		

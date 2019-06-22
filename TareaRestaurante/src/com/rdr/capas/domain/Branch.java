@@ -16,6 +16,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -28,34 +33,42 @@ public class Branch {
 	@GeneratedValue(generator="branch_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(name = "branch_id_seq", sequenceName = "public.branch_id_seq", allocationSize=1)
 	private Integer id;
-
+	
+	@NotEmpty(message="No puede estar vacio")
 	private String name;
-
+	
+	@NotEmpty(message="No puede estar vacio")
 	private String address;
 	
 	@Basic
 	@Column(name = "opening_weekend_time")
+	@NotNull(message="No puede estar vacio")
 	private Time openingWeekendTime;
 	
 	@Basic
-	@Column(name = "closing_weekend_time")
+	@Column(name = "closing_weekend_time")	
+	@NotNull(message="No puede estar vacio")
 	private Time closingWeekendTime;
 	
 	@Basic
 	@Column(name = "opening_week_time")
+	@NotNull(message="No puede estar vacio")
 	private Time openingWeekTime;
 	
 	@Basic
 	@Column(name = "closing_week_time")
+	@NotNull(message="No puede estar vacio")
 	private Time closingWeekTime;
 	
 	@Column(name = "number_of_tables")
+	@Min(1)
 	private int numberOfTables;
 	
 	@Column(name = "manager_name")
+	@NotEmpty(message="No puede estar vacio")
 	private String managerName;
 		
-	@OneToMany(mappedBy= "branch", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy= "branch", fetch = FetchType.EAGER)
 	private List<Employee> employees;
 	
 	public Branch() {		

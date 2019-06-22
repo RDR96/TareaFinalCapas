@@ -51,3 +51,8 @@ body, html {
 .submitIcon {
 	margin-right: 8px;
 }
+
+.rusticoNameLabel {
+	font-size: 70px;
+	color: #64dd17;
+}

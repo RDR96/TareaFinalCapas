@@ -28,8 +28,11 @@
 			<div class="col-md-1 form-container">
 			    <i class="fas fa-leaf"></i>
 			</div>
-			<div class="col-md-11 library-name-section">
-				<span>Rustico</span>	
+			<div class="col-md-8 library-name-section">
+				<span>Rustico</span>					
+			</div>
+			<div class="col-md-3 library-name-section">				
+				<span>Sucursales</span>
 			</div>
 		</div>
 	</nav>
@@ -48,7 +51,7 @@
        				<th width="120">Cierre/fin de semana</th>
        				<th width="80">N° Mesas</th>
        				<th>Gerente</th>
-       				<th class="lastColumn"></th>
+       				<th style="width: 55px;"></th>
        			</tr>
        		</thead>
        	
@@ -62,7 +65,7 @@
 				<td><c:out value = "${branch.getClosingWeekendTime()}"/></td>
 				<td><c:out value = "${branch.getNumberOfTables()}"/></td>
 				<td><c:out value = "${branch.getManagerName()}"/></td>			
-				<td class="last-column"><Button style="margin-right: 8px;" onclick="location.href='${pageContext.request.contextPath}/edit?id=${branch.getId()}'"><i class="fas fa-edit"></i></Button> </td>
+				<td class="last-column"><Button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/edit?id=${branch.getId()}'"><i class="fas fa-edit"></i></Button> </td>
 			</tr>
 		</c:forEach>	
 		</table>

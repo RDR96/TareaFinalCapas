@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(schema="public", name="user")
@@ -16,14 +19,13 @@ public class User {
 	@GeneratedValue(generator="user_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(name = "user_id_seq", sequenceName = "public.user_id_seq", allocationSize=1)
 	private Integer id;
-
+	
+	@NotEmpty(message="No puede estar vacio")	
 	private String username;
 
+	@NotEmpty(message="No puede estar vacio")
 	private String password;
-	
-	
-
-	
+		
 	public User() {
 		
 	}

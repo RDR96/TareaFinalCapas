@@ -20,6 +20,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,10 +32,9 @@ public class Employee {
 	@GeneratedValue(generator="user_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(name = "user_id_seq", sequenceName = "public.user_id_seq", allocationSize=1)
 	private Integer id;
-
-	private String name; 
-
 	
+	@NotEmpty(message = "No puede estar vacio")
+	private String name; 
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
@@ -45,17 +45,8 @@ public class Employee {
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "branch_id", nullable= false)
-	private Branch branch;
-		
-	
-	//@Column(name = "branch_id")
-	//private Integer branchId;
-	
-	/*@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id", insertable=false, updatable=false)
-	private Branch branch;*/
-		
-	
+	private Branch branch;	
+			
 	public Employee() {
 		
 	}

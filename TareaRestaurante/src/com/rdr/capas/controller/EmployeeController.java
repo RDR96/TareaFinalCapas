@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -37,29 +38,74 @@ public class EmployeeController {
 	EmployeeInterface employeeService;
 	
 	@RequestMapping("/create-new-employee")
-	public ModelAndView createNewEmployee(@RequestParam String branch_id) {		
+	public ModelAndView createNewEmployee(@RequestParam String branch_id, Model model) {		
 		ModelAndView mav = new ModelAndView();
 			
-		Employee employee = new Employee();					
+		if (!model.containsAttribute("employee")) {
+			mav.addObject("employee", new Employee());
+		}
 		
-		mav.addObject("employee", employee);
+		mav.addObject("headerMessage", "Contratar Empleado");
+		mav.addObject("actionMessage", "Contratar");
 		mav.addObject("mensajeBoton", "Regresar");
 		mav.addObject("branchId", Integer.parseInt(branch_id) );
-		mav.addObject("pageToRedirect", "edit");
+		mav.addObject("pageToRedirect", "edit");		
+		mav.setViewName("employeeInfo");	
+		
+		return mav;
+	}	
+	
+	@RequestMapping("/create-employee")
+	public String createEmployee(@ModelAttribute Employee employee, @RequestParam String branchId, BindingResult result, RedirectAttributes redirectAttributes) {
+		String redirect = "redirect:/";
+		
+		if (result.hasErrors()) {
+			System.out.println("Error");
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.employee", result);
+            redirectAttributes.addFlashAttribute("employee", employee);
+            redirectAttributes.addAttribute("branch_id", branchId );	
+            redirect += "create-new-employee";
+		}
+		else {			
+			employee.setBranch(branchService.getOne(Integer.parseInt(branchId)));
+			employeeService.create(employee);										
+			redirectAttributes.addAttribute("id", branchId );	
+			redirect += "edit";
+		}
+		
+		
+		return redirect;
+	}
+	
+	@RequestMapping("/edit-new-employee")
+	public ModelAndView editEmployee(@RequestParam String employee_id, @RequestParam String branch_id) {		
+		ModelAndView mav = new ModelAndView();
+			
+		Employee employee =  employeeService.getOne(Integer.parseInt(employee_id));	
+		System.out.println(employee.getName());
+		
+		mav.addObject("headerMessage", "Editar Empleado");
+		mav.addObject("actionMessage", "Editar");
+		mav.addObject("employee", employee);		
+		mav.addObject("mensajeBoton", "Eliminar");
+		mav.addObject("branchId", branch_id );
+		mav.addObject("pageToRedirect", "delete-employee");
 		
 		mav.setViewName("employeeInfo");	
 		return mav;
 	}	
 	
-	@RequestMapping("/create-employee")
-	public String createEmployee(@ModelAttribute Employee employee, @RequestParam String branchId,RedirectAttributes redirectAttributes) {
-		employee.setBranch(branchService.getOne(Integer.parseInt(branchId)));
-		employeeService.create(employee);		
+	@RequestMapping("/delete-employee")
+	public String deleteEmployee(@RequestParam String employee_id, @RequestParam String branch_id,RedirectAttributes redirectAttributes) {
+		
+		employeeService.deleteById(Integer.parseInt(employee_id));
 							
-		redirectAttributes.addAttribute("id", branchId );
+		redirectAttributes.addAttribute("id", branch_id );
 		
 		return "redirect:/edit";
-	}	
+	}
+	
+	
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

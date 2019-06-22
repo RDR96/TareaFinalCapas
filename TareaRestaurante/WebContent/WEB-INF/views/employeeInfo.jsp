@@ -29,8 +29,11 @@
 			<div class="col-md-1 form-container">
 			    <i class="fas fa-leaf"></i>
 			</div>
-			<div class="col-md-11 library-name-section">
+			<div class="col-md-8 library-name-section">
 				<span>Rustico</span>	
+			</div>
+			<div class="col-md-3 header-message">
+				<span>${headerMessage}</span>	
 			</div>
 		</div>
 	</nav>
@@ -76,10 +79,21 @@
 				 <div class="row">
 				 	
 				 	<div class="col-sm-12 col-md-6 form-container">			 		
-				 		<button class="btn btn-primary" type="submit" type="reset"><i class="fas fa-arrow-alt-circle-up submitIcon"></i>Crear</button>					 								 					 						 	
+				 		<button class="btn btn-primary" type="submit" type="reset"><i class="fas fa-arrow-alt-circle-up submitIcon"></i>${actionMessage}</button>					 								 					 						 	
 				 	</div>
-				 	<div class="col-sm-12 col-md-6 form-container">			 		
-				 		<button class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/${pageToRedirect}'" type="reset"><i class="far fa-trash-alt submitIcon"></i> ${mensajeBoton} </button>					 								 					 						 	
+				 	<div class="col-sm-12 col-md-6 form-container">			 	
+				 		<c:choose>
+         
+				         <c:when test = "${employee.getId() != null}">
+				            <button class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/${pageToRedirect}?employee_id=${employee.getId()}&branch_id=${branchId}'" type="reset"><i class="far fa-trash-alt submitIcon"></i> ${mensajeBoton} </button>
+				         </c:when>
+				         
+				         <c:when test = "${employee.getId() == null}">
+				            <button class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/${pageToRedirect} '" type="reset"><i class="far fa-trash-alt submitIcon"></i> ${mensajeBoton} </button>
+				         </c:when>
+				    
+				      </c:choose>
+				 				 						 								 					 						 	
 				 	</div>
 				 </div>					 					
 			</form:form>

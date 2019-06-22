@@ -37,8 +37,9 @@ table td {
 	overflow: hidden;
 }
 
-.lastColumn {
-	width: 55px;
+.last-column {
+	display: flex;
+    justify-content: center;
 }
 
 div.row[class^="col"]{

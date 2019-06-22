@@ -29,8 +29,11 @@
 			<div class="col-md-1 form-container">
 			    <i class="fas fa-leaf"></i>
 			</div>
-			<div class="col-md-11 library-name-section">
+			<div class="col-md-8 library-name-section">
 				<span>Rustico</span>	
+			</div>
+			<div class="col-md-3 library-name-section">				
+				<span>Crear Sucursal</span>
 			</div>
 		</div>
 	</nav>
@@ -71,7 +74,7 @@
 				 <div class="form-group">
 				 	<label for="closingWeekLabel">Cierre / Semana</label>
 				 	<input id="closing-week-time"  type="time" class="form-control time-element" />				 	
-				 	<form:hidden id="closing-week-time-hidden" path="closingWeekTime"/>	
+				 	<form:hidden id="closing-week-time-hidden" path="closingWeekTime" required="true"/>	
 				 	<form:errors path="closingWeekTime" cssStyle="color: #E81505"/>	
 				 					 					 						 
 				 </div>
@@ -95,7 +98,7 @@
 				 <div class="row">
 				 	
 				 	<div class="col-sm-12 col-md-6 form-container">			 		
-				 		<button class="btn btn-primary" type="submit" type="reset"><i class="fas fa-arrow-alt-circle-up submitIcon"></i>Crear</button>					 								 					 						 	
+				 		<button id="createButton" class="btn btn-primary" type="submit" type="reset"><i class="fas fa-arrow-alt-circle-up submitIcon"></i>Crear</button>					 								 					 						 	
 				 	</div>
 				 	<div class="col-sm-12 col-md-6 form-container">			 		
 				 		<button class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/branches'" type="reset"><i class="far fa-trash-alt submitIcon"></i>Cancelar</button>					 								 					 						 	
