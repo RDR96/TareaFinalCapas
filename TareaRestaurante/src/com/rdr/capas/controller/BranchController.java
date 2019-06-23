@@ -74,11 +74,14 @@ public class BranchController {
 	}	
 	
 	@RequestMapping("/edit")
-	public ModelAndView editBranch(@RequestParam String id) {		
-		ModelAndView mav = new ModelAndView();					
-		Branch branch = branchService.getOne(Integer.parseInt(id));
-		mav.addObject("headerMessage", "Editar Sucursal #" + id);
-		mav.addObject("branch", branch);
+	public ModelAndView editBranch(@RequestParam String id, Model model) {		
+		ModelAndView mav = new ModelAndView();				
+		
+		if (!model.containsAttribute("branch")) {
+			mav.addObject("branch", branchService.getOne(Integer.parseInt(id)));
+		}				
+		
+		mav.addObject("headerMessage", "Editar Sucursal #" + id);		
 		mav.setViewName("editBranch");
 		
 		return mav;
@@ -92,18 +95,21 @@ public class BranchController {
 	}
 	
 	@RequestMapping("/edit-branch")
-	public String edit(@ModelAttribute Branch branch, RedirectAttributes redirectAttributes ) {		
-		ModelAndView mav = new ModelAndView();	
-						
-		branchService.update(branch);
-		Branch branchUpdated = branchService.getOne(branch.getId());		
+	public String edit(@Valid @ModelAttribute Branch branch, BindingResult result,RedirectAttributes redirectAttributes ) {		
+		String redirect = "redirect:/edit";
 		
-		mav.addObject("branch", branchUpdated);
-		mav.setViewName("editBranch");
+		if(result.hasErrors()) {
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.branch", result);
+            redirectAttributes.addFlashAttribute("branch", branch);
+            redirectAttributes.addAttribute("id", branch.getId());
+			
+		}
+		else {
+			redirectAttributes.addAttribute("id", branch.getId());
+			branchService.update(branch);			
+		}																			
 		
-		redirectAttributes.addAttribute("id", branch.getId());
-		
-		return "redirect:/edit";
+		return redirect;
 	}
 	
 	

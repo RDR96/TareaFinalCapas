@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -49,9 +50,10 @@ public class Branch {
 	
 	@Column(name = "manager_name")
 	@NotEmpty(message="No puede estar vacio")
+	@Pattern(regexp = "[A-Za-z ]+", message="No puede contener numeros")
 	private String managerName;
 		
-	@OneToMany(mappedBy= "branch", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy= "branch", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval=true)
 	private List<Employee> employees;
 	
 	public Branch() {		

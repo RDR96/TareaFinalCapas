@@ -113,7 +113,10 @@ div.row[class^="col"]{
 	width: 40%;
 }
 
-
+.return-to-branches {
+	width: 40%;
+	margin-top: 10px;
+}
 
 .header-message  {
 	font-size: 35px;

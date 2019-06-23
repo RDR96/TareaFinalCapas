@@ -23,6 +23,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,18 +38,19 @@ public class Employee {
 	private Integer id;
 	
 	@NotEmpty(message = "No puede estar vacio")
+	@Pattern(regexp = "[A-Za-z ]+", message="No puede contener numeros")
 	private String name; 
 	
 	@Min(18)
-	@Max(65)
+	@Max(65)	
     private int age;
 	
 	private String genre;
 
 	private boolean status;
 	
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "branch_id", nullable= false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "branch_id")
 	private Branch branch;	
 			
 	public Employee() {
