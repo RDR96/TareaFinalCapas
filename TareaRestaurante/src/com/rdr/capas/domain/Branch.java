@@ -35,13 +35,13 @@ public class Branch {
 	@SequenceGenerator(name = "branch_id_seq", sequenceName = "public.branch_id_seq", allocationSize=1)
 	private Integer id;
 	
-	@NotEmpty(message="No puede estar vacío")
+	@NotEmpty(message="No puede estar vacÃ­o")
 	private String name;
 	
-	@NotEmpty(message="No puede estar vacío")
+	@NotEmpty(message="No puede estar vacÃ­o")
 	private String address;
 	
-	@NotEmpty(message = "No puede estar vacío")
+	@NotEmpty(message = "No puede estar vacÃ­o")
 	private String schedules;
 	
 	@Column(name = "number_of_tables")
@@ -53,7 +53,7 @@ public class Branch {
 	@Pattern(regexp = "[A-Za-z ]+", message="No puede contener numeros")
 	private String managerName;
 		
-	@OneToMany(mappedBy= "branch", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval=true)
+	@OneToMany(mappedBy= "branch", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Employee> employees;
 	
 	public Branch() {		
