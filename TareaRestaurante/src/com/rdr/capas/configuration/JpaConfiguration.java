@@ -45,7 +45,7 @@ public class JpaConfiguration {
 	public DataSource dataSource(){
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl("jdbc:postgresql://127.0.0.1:5433/tareaNCapas");
+		dataSource.setUrl("jdbc:postgresql://127.0.0.1:5432/tareaNCapas");
 		dataSource.setUsername("postgres");
 		dataSource.setPassword("postgres");
 
