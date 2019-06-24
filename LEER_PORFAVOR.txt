@@ -1,0 +1,4 @@
+Saludos, Ingeniero Lozano, le adjunto la base de datos que creé para la tarea,
+me estaba dando problema utilizar el nombre de las columnas en formato camelCase.
+Mis columnas están en ingles y con este_formato, porque al parecer @Column(name= "noPuedeSerAsi").
+Espero comprenda, muchas gracias.
